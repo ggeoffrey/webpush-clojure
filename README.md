@@ -44,9 +44,17 @@ Your backend receive subscriptions shaped like this:
 
 ### Generating keypairs
 
-```shell
-lein run generate-key
+```clojure
+(webpush.utils/generate-keys)
+;; => {:public "BEWi1tvrrkZhe_FJjhGbVvLDmXrQMhMr27aJ9UGJdCSAdRp8tVciDbNqBMLlmb2ZctcZvfY2tEvQIlSRo7QqVkw=",
+;;     :private "AMbTUIvdMwwboLSxWMNoRS6XaJuXmX1reHrkNBdiJBwq"}
 ```
+
+### CLI
+
+`Webpush-java` allow users to generate keys or send a notification as a shell
+command (using gradle). If you have any use case where shell commands might be a
+better fit then a REPL please open an issue.
 
 ## Contributing
 
