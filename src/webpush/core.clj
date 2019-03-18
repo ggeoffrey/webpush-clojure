@@ -1,4 +1,5 @@
 (ns webpush.core
+  (:refer-clojure :exclude [send])
   (:import java.security.Security
            (org.bouncycastle.jce.provider BouncyCastleProvider)
            (nl.martijndwars.webpush Notification PushService
