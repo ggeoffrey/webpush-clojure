@@ -42,6 +42,12 @@ Your backend receive subscriptions shaped like this:
 (webpush.core/add-security-provider!)
 ```
 
+### Generating keypairs
+
+```shell
+lein run generate-key
+```
+
 ## Contributing
 
 This library should stay so small that all contributions should go to [Webpush-java](https://github.com/web-push-libs/webpush-java) IMHO, but all PRs are welcome.

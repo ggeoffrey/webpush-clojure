@@ -6,4 +6,5 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [nl.martijndwars/web-push "5.0.1"]
                  [org.bouncycastle/bcprov-jdk15on "1.61"]]
-  :repl-options {:init-ns webpush.core})
+  :repl-options {:init-ns webpush.core}
+  :main webpush.cli)
