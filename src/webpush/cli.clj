@@ -1,20 +1,18 @@
 (ns webpush.cli
-  (:require [webpush.core :refer [add-security-provider!]])
-  (:import (nl.martijndwars.webpush.cli.handlers GenerateKeyHandler)
-           (nl.martijndwars.webpush.cli.commands GenerateKeyCommand))
-  (:gen-class))
+  (:gen-class)
+  (:require [webpush.utils :as utils]
+            [webpush.core :as push]))
+
+(defn init! []
+  (push/add-security-provider!))
 
 
-(defn generate-keys!
-  "Generate and print fresh public and private keys to stdout"
-  []
-  (-> (GenerateKeyCommand.)
-      (GenerateKeyHandler.)
-      (.run)))
-
-(defn -main [& [command]]
-  (add-security-provider!)
-  (case command
-    "generate-key" (generate-keys!)
-    "send"
+(defn -main [& args]
+  (init!)
+  (case (first args)
+    "generate-key"      (let [{:keys [public private]} (utils/generate-keys)]
+                          (println "Public:")
+                          (println public)
+                          (println "Private:")
+                          (println private))
     nil))
