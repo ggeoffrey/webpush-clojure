@@ -1,18 +1,20 @@
 (ns webpush.utils
-  (:require [clojure.string :as str])
-  (:import nl.martijndwars.webpush.cli.commands.GenerateKeyCommand
-           nl.martijndwars.webpush.cli.handlers.GenerateKeyHandler))
+  (:import java.security.KeyPairGenerator
+           [nl.martijndwars.webpush Base64Encoder Utils]
+           org.bouncycastle.jce.ECNamedCurveTable
+           org.bouncycastle.jce.provider.BouncyCastleProvider))
 
-(defn parse-output [string]
-  (let [[_ public _ private] (str/split-lines string)]
-    {:public  public
-     :private private}))
+(defn generate-key-pair []
+  (-> (KeyPairGenerator/getInstance Utils/ALGORITHM BouncyCastleProvider/PROVIDER_NAME)
+      (doto (.initialize (ECNamedCurveTable/getParameterSpec Utils/CURVE)))
+      (.generateKeyPair)))
+
+(defn encode [key]
+  (Base64Encoder/encodeUrl (Utils/encode key)))
 
 (defn generate-keys
-  "Generate and print fresh public and private keys to stdout"
+  "Generate public and private keys"
   []
-  (parse-output
-   (with-out-str
-     (-> (GenerateKeyCommand.)
-         (GenerateKeyHandler.)
-         (.run)))))
+  (let [key-pair (generate-key-pair)]
+    {:public  (encode (.getPublic key-pair))
+     :private (encode (.getPrivate key-pair))}))
