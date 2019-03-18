@@ -15,7 +15,7 @@
   ([endpoint p256dh auth]
    (Subscription. endpoint (Subscription$Keys. p256dh auth))))
 
-(defn push-service
+(defn service
   ([gcm-api-key]
    (PushService. gcm-api-key))
   ([key-pair subject]
@@ -37,6 +37,6 @@
   (let [sub   (subscription {:endpoint "https://random-push-service.com/some-kind-of-unique-id-1234/v2/"
                              :keys     {:key  "BNcRdreALRFXTkOOUHK1EtK2wtaz5Ry4YfYCA_0QTpQtUbVlUls0VJXg7A8u-Ts1XbjhazAkj7I99e8QcYP7DkM="
                                         :auth "tBHItJI5svbpez7KI4CCXg=="}})
-        svc   (push-service)
+        svc   (service)
         notif (notification sub "hello")]
     (send push-service notif)))

@@ -33,7 +33,7 @@ Your backend receive subscriptions shaped like this:
       ;; Create a push-service instance by passing your `public-key`,
       ;; `private-key` (as strings), and the webpush `subject` (most of the time
       ;; your email)
-      svc (push-service <public-key> <private-key> <subject>)]
+      svc (service <public-key> <private-key> <subject>)]
   (send svc (notification sub "Hello World!")))
 
 ;; The webpush protocol force payloads encryption using public/private keypairs.
