@@ -7,11 +7,13 @@
 (defn add-security-provider! []
   (Security/addProvider (BouncyCastleProvider.)))
 
-(defn subscription [subscription-map]
-  (let [endpoint           (:endpoint subscription-map)
-        {:keys [key auth]} (:keys subscription-map)
-        keys               (Subscription$Keys. key auth)]
-    (Subscription. endpoint keys)))
+(defn subscription
+  ([subscription-map]
+   (let [{:keys [endpoint keys]} subscription-map
+         {:keys [p256dh auth]}   keys]
+     (subscription endpoint p256dh auth)))
+  ([endpoint p256dh auth]
+   (Subscription. endpoint (Subscription$Keys. p256dh auth))))
 
 (defn push-service
   ([gcm-api-key]
