@@ -1,3 +1,5 @@
+[![Clojars Project](https://img.shields.io/clojars/v/webpush.svg)](https://clojars.org/webpush)
+
 # webpush-clojure
 
 Wrapping [Webpush-java](https://github.com/web-push-libs/webpush-java). Only provide a convenient clojure api.
