@@ -27,7 +27,7 @@
 (defn notification [subscription payload]
   (Notification. subscription payload))
 
-(defn send [push-service notification]
+(defn send! [push-service notification]
   (.send push-service notification))
 
 (defn send-async [push-service notification]
