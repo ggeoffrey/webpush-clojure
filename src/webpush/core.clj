@@ -40,4 +40,4 @@
                                         :auth "tBHItJI5svbpez7KI4CCXg=="}})
         svc   (service)
         notif (notification sub "hello")]
-    (send push-service notif)))
+    (send! push-service notif)))
