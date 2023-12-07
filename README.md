@@ -28,7 +28,7 @@ Your backend receive subscriptions shaped like this:
 
 ### How to send a notification:
 ```clojure
-(require '[webpush.core :refer [subscription push-service notification]])
+(require '[webpush.core :refer [subscription push-service notification send!]])
 
 (let [;; Create a subscription
       sub (subscription <endpoint> <p256dh> <auth>)
@@ -36,7 +36,7 @@ Your backend receive subscriptions shaped like this:
       ;; `private-key` (as strings), and the webpush `subject` (most of the time
       ;; your email)
       svc (service <public-key> <private-key> <subject>)]
-  (send svc (notification sub "Hello World!")))
+  (send! svc (notification sub "Hello World!")))
 
 ;; The webpush protocol force payloads encryption using public/private keypairs.
 ;; On the JVM it uses some algorithms provided by BouncyCastle. If you get any
