@@ -1,0 +1,8 @@
+{:deps {org.clojure/clojure {:mvn/version "1.9.0"},
+        nl.martijndwars/web-push {:mvn/version "5.0.1"},
+        org.bouncycastle/bcprov-jdk15on {:mvn/version "1.61"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]
+         :exec-fn cognitect.test-runner.api/test}}}
